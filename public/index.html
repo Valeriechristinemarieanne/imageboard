@@ -9,6 +9,16 @@
 <h1>My Imageboard</h1>
 
 <!-- this container is for our view instance -->
+
+<div id="input">
+    <input type="text" placeholder="Title" required>
+    <input type="text" placeholder="Description"required>
+    <input type="text" placeholder="Username"required>
+    <button id="choosefile" required>Choose File</button> 
+    <button id="upload">Upload</button> 
+</div>
+
+
 <div id="main">
 
     <!-- <h2>Hi {{name}}. Isn't Vue awesome</h2>
@@ -23,7 +33,6 @@
     <ul>
         <li v-for="city in cities" @click="myFunction"> {{city.name}}, {{city.country}}</li>
     </ul> -->
-
     <div v-for="image in images" class="card">
         <img :src="image.url" alt="images">
         <h6>{{image.title}}</h6>
@@ -31,9 +40,6 @@
     </div>
 
 </div>
-
-
-
 
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>

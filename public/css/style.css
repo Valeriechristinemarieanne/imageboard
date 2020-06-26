@@ -3,6 +3,35 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#input {
+    display: flex;
+    width: 100 vw;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+input {
+    border-bottom: #323e48 2px solid;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background: transparent;
+    outline: 0;
+    margin-bottom: 5vw;
+}
+
+#choosefile {
+    width: 15vw;
+    height: 2vw;
+    border: #323e48 1px solid;
+}
+
+#upload {
+    width: 15vw;
+    height: 2vw;
+    border: #323e48 1px solid;
+}
+
 #main {
     display: flex;
     width: 100vw;
@@ -24,8 +53,11 @@ img {
     margin-bottom: 0;
 }
 
+/* Fonts */
+
 h1 {
     text-align: center;
+    margin-bottom: 7vw;
 }
 
 h6 {
