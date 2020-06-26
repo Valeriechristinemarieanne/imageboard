@@ -10,35 +10,40 @@
 
 <!-- this container is for our view instance -->
 
-<div id="input">
-    <input type="text" placeholder="Title" required>
-    <input type="text" placeholder="Description"required>
-    <input type="text" placeholder="Username"required>
-    <button id="choosefile" required>Choose File</button> 
+<!-- <div id="input">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="description" placeholder="Description"required>
+    <input type="text" name="username" placeholder="Username"required>
+    <input type="file" name="file" accept="image/*" id="choosefile" required>
     <button id="upload">Upload</button> 
 </div>
+ -->
+<!-- Class notes with form element instead -->
+
+
 
 
 <div id="main">
+ <div id="input">
+    <form>
+        <input v-model="title" type="text" name="title" placeholder="Title" required>
+        <input v-model="description" type="text" name="description" placeholder="Description"required>
+        <input v-model="username" type="text" name="username" placeholder="Username"required>
+        
+        <input @change="handleChange" type="file" name="file" accept="image/*" class="inputfile">
+        
+        <button @click="handleClick" id="upload">Upload</button> 
+    </form>
+ </div>
 
-    <!-- <h2>Hi {{name}}. Isn't Vue awesome</h2>
-
-    <h2>2 * 2 = {{2 * 2}}</h2>
-    <h2>Name capitalized: {{name.toUpperCase()}}</h2>
-
-
-    <h3 v-if="seen">Yay you can see me!!!! </h3>
-    <h3 v-else="seen">'seen' is falsey!!!! </h3>
-
-    <ul>
-        <li v-for="city in cities" @click="myFunction"> {{city.name}}, {{city.country}}</li>
-    </ul> -->
+ <div id="cardcontainer">
     <div v-for="image in images" class="card">
         <img :src="image.url" alt="images">
         <h6>{{image.title}}</h6>
         <!-- <p>{{image.description}}</p>  -->
     </div>
-
+ </div>
+   
 </div>
 
     <script src="/js/vue.js"></script>

@@ -3,13 +3,21 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#main {
+    display: flex;
+    width: 100 vw;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    flex-direction: column;
+}
+
 #input {
     display: flex;
     width: 100 vw;
     justify-content: space-around;
     margin-bottom: 30px;
+    flex-direction: rows;
 }
-
 input {
     border-bottom: #323e48 2px solid;
     border-top: 0;
@@ -19,6 +27,15 @@ input {
     outline: 0;
     margin-bottom: 5vw;
 }
+
+/* .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+} */
 
 #choosefile {
     width: 15vw;
@@ -32,16 +49,14 @@ input {
     border: #323e48 1px solid;
 }
 
-#main {
+#cardcontainer {
     display: flex;
-    width: 100vw;
-    justify-content: space-around;
 }
 
 .card {
     border: darkgray 2px solid;
     border-radius: 2%;
-    flex-direction: column;
+
     text-align: center;
 }
 
