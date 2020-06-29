@@ -16,7 +16,7 @@ exports.getImages = () => {
 
 exports.addImage = (url, username, title, description) => {
     return db.query(
-        `INSERT INTO images (url, username, title, description) VALUES ($2, $3, $4, $5) RETURNING *`,
+        `INSERT INTO images (url, username, title, description) VALUES ($1, $2, $3, $4) RETURNING *`,
         [url, username, title, description]
     );
 };
@@ -26,6 +26,12 @@ exports.getSelectedImage = (id) => {
 };
 
 // COMMENTS TABLE
-exports.getComments = () => {
-    return db.query(`SELECT * FROM comments`);
+exports.addComments = () => {
+    return db.query(
+        `INSERT INTO comments (comment, user) VALUES ($1, $2, $3, $4) `
+    );
+};
+
+exports.getComments = (id) => {
+    return db.query(`SELECT * FROM comments WHERE id = $1`, [id]);
 };

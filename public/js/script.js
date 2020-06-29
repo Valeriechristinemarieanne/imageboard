@@ -32,6 +32,15 @@
                 .catch(function (err) {
                     console.log("error in GET /images: ", err);
                 });
+
+            axios
+                .get(`/comments/${this.id}`)
+                .then(function (response) {
+                    self.comment = response.data.comment;
+                })
+                .catch(function (err) {
+                    console.log("error in GET /comments: ", err);
+                });
         },
 
         methods: {

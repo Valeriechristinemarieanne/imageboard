@@ -1,11 +1,18 @@
 const express = require("express");
 const app = express();
-const { getImages, addImage, getSelectedImage, , getComments } = require("./sql/db.js");
+const {
+    getImages,
+    addImage,
+    getSelectedImage,
+    getComments,
+    addComments,
+} = require("./sql/db.js");
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
 console.log("s3Url: ", s3Url);
 
 app.use(express.static("public"));
+app.use(express.json());
 
 // FILE UPLOAD BOILERPLATE
 const multer = require("multer");
@@ -31,10 +38,14 @@ const uploader = multer({
 });
 
 app.get("/images", (req, res) => {
-    getImages().then((result) => {
-        res.json(result.rows);
-        /* console.log("result.rows: ", result.rows); */
-    });
+    getImages()
+        .then((result) => {
+            res.json(result.rows);
+            /* console.log("result.rows: ", result.rows); */
+        })
+        .catch(function (err) {
+            console.log("err in GET/images:", err);
+        });
 });
 
 app.get("/imagesmore/:id", (req, res) => {
@@ -71,13 +82,29 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             res.json(response.rows[0]);
         });
     } else {
-        console.log("ERROR in POST");
+        console.log("ERROR in POST images");
     }
 });
 
-app.get("/comments", (req,res) => {
-    console.log("I am ready for some comments"); 
-})
+app.get("/comments/:id", (req, res) => {
+    console.log("Here come all the comments for this image");
+    getComments().then((result) => {
+        res.json(result.rows[0]);
+        /* console.log("result.rows: ", result.rows); */
+    });
+});
 
+app.post("/comments/:id", (req, res) => {
+    console.log("I want to add comments to the table");
+
+    if (req.comment) {
+        addComments(req.body.comment).then((result) => {
+            res.json(result.rows[0]);
+            /* console.log("result.rows: ", result.rows); */
+        });
+    } else {
+        console.log("ERROR in POST comments");
+    }
+});
 
 app.listen(8080, () => console.log("Imageboard server is listening"));
