@@ -6,24 +6,16 @@
 </head>
 <body>
 
-<h1>My Imageboard</h1>
-
-<!-- this container is for our view instance -->
-
-<!-- <div id="input">
-    <input type="text" name="title" placeholder="Title" required>
-    <input type="text" name="description" placeholder="Description"required>
-    <input type="text" name="username" placeholder="Username"required>
-    <input type="file" name="file" accept="image/*" id="choosefile" required>
-    <button id="upload">Upload</button> 
-</div>
- -->
-<!-- Class notes with form element instead -->
-
-
-
+ 
 
 <div id="main">
+
+    <div class="overlay"></div>
+
+<h1>My Imageboard</h1>
+
+     <first-component id="component" v-if='id' :id="id"> </first-component>
+
  <div id="input">
     <form>
         <input v-model="title" type="text" name="title" placeholder="Title" required>
@@ -38,16 +30,39 @@
 
  <div id="cardcontainer">
     <div v-for="image in images" class="card">
-        <img :src="image.url" alt="images">
+        <img @click="setId(image.id);" :src="image.url" alt="images">
         <h6>{{image.title}}</h6>
-        <!-- <p>{{image.description}}</p>  -->
+        
     </div>
  </div>
    
 </div>
 
+ <script id='template' type='text/x-template'>
+      
+        <div class='component'>
+            
+            <h3>{{title}}</h3> 
+            <img :src="url" alt="images">
+            <p>{{description}}</p> 
+            <p> By &nbsp; {{username}}</p> 
+            <p>{{created_at}}</p> 
+            
+                <div class="commentsection">
+                    <input v-model="comment" type="text" name="comment" class="comment" placeholder="Comment">
+                    <input v-model="user" type="text" name="user" class="user"     placeholder="Username">
+                    <button @click="submitComment" class="submit">Submit</button>
+                    <p @click='closeModal' id="close"> X </p>
+                </div>
+        
+           
+        </div>
+  
+</script>
+
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js"></script>
+
 </body>
 </html>
