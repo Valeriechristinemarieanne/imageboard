@@ -14,7 +14,7 @@ h1 {
     width: 30vw;
     text-align: center;
     align-self: center;
-    margin-bottom: 7vw;
+    margin-bottom: 4vw;
 }
 
 /* Main section including input (upload for img) & cardcontainer with all images */
@@ -41,8 +41,32 @@ h1 {
     border-right: 0;
     background: transparent;
     outline: 0;
-    margin-bottom: 5vw;
+    margin-bottom: 2vw;
     cursor: pointer;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    cursor: pointer;
+}
+
+.inputfile + label {
+    font-size: 1em;
+    color: white;
+    background-color: #323e48;
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: pink;
 }
 
 #uploadbutton {
@@ -50,6 +74,13 @@ h1 {
     height: 2vw;
     border: #323e48 1px solid;
     cursor: pointer;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+}
+
+#upload p {
+    text-align: center;
 }
 
 /* this section holds all cards incl. images and title */
