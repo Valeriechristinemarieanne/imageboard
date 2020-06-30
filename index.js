@@ -87,11 +87,11 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.get("/comments/:id", (req, res) => {
-    console.log("Here come all the comments for this image");
+    /* console.log("Here come all the comments for this image"); */
     getComments(req.params.id)
         .then((result) => {
             res.json(result.rows);
-            console.log("result.rows: ", result.rows);
+            /*  console.log("result.rows: ", result.rows); */
         })
         .catch(function (err) {
             console.log("err in GET/comments:", err);
@@ -99,8 +99,8 @@ app.get("/comments/:id", (req, res) => {
 });
 
 app.post("/comments", (req, res) => {
-    console.log("I want to add comments to the table");
-    console.log("this is my req.body: ", req.body);
+    /* console.log("I want to add comments to the table");
+    console.log("this is my req.body: ", req.body); */
 
     addComments(req.body.comment, req.body.username, req.body.image_id)
         .then((result) => {

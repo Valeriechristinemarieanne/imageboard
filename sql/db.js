@@ -11,12 +11,12 @@ if (process.env.DATABASE_URL) {
 
 // IMAGES TABLE
 exports.getImages = () => {
-    return db.query(`SELECT * FROM images ORDER BY id DESC`);
+    return db.query(`SELECT * FROM images ORDER BY id DESC LIMIT 21`);
 };
 
 exports.addImage = (url, username, title, description) => {
     return db.query(
-        `INSERT INTO images (url, username, title, description) VALUES ($1, $2, $3, $4) RETURNING *`,
+        `INSERT INTO images (url, username, title, description) VALUES ($1, $3, $2, $4) RETURNING *`,
         [url, username, title, description]
     );
 };
