@@ -88,23 +88,28 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 
 app.get("/comments/:id", (req, res) => {
     console.log("Here come all the comments for this image");
-    getComments().then((result) => {
-        res.json(result.rows[0]);
-        /* console.log("result.rows: ", result.rows); */
-    });
+    getComments(req.params.id)
+        .then((result) => {
+            res.json(result.rows);
+            /* console.log("result.rows: ", result.rows); */
+        })
+        .catch(function (err) {
+            console.log("err in GET/comments:", err);
+        });
 });
 
-app.post("/comments/:id", (req, res) => {
+app.post("/comments", (req, res) => {
     console.log("I want to add comments to the table");
+    console.log("this is my req.body: ", req.body);
 
-    if (req.comment) {
-        addComments(req.body.comment).then((result) => {
+    addComments(req.body.comment, req.body.username, req.body.image_id)
+        .then((result) => {
             res.json(result.rows[0]);
             /* console.log("result.rows: ", result.rows); */
+        })
+        .catch(function (err) {
+            console.log("err in POST/comments:", err);
         });
-    } else {
-        console.log("ERROR in POST comments");
-    }
 });
 
 app.listen(8080, () => console.log("Imageboard server is listening"));

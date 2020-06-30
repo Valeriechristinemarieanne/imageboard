@@ -11,7 +11,7 @@ if (process.env.DATABASE_URL) {
 
 // IMAGES TABLE
 exports.getImages = () => {
-    return db.query(`SELECT * FROM images`);
+    return db.query(`SELECT * FROM images ORDER BY id DESC`);
 };
 
 exports.addImage = (url, username, title, description) => {
@@ -26,9 +26,10 @@ exports.getSelectedImage = (id) => {
 };
 
 // COMMENTS TABLE
-exports.addComments = () => {
+exports.addComments = (comment, username, image_id) => {
     return db.query(
-        `INSERT INTO comments (comment, user) VALUES ($1, $2, $3, $4) `
+        `INSERT INTO comments (comment, username, image_id) VALUES ($1, $2, $3) RETURNING *`,
+        [comment, username, image_id]
     );
 };
 

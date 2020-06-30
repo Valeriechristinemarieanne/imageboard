@@ -11,6 +11,8 @@
                 description: self.description,
                 username: self.username,
                 created_at: self.created_at,
+                comment: self.comment,
+                username: self.username,
             };
         },
         mounted: function () {
@@ -36,7 +38,10 @@
             axios
                 .get(`/comments/${this.id}`)
                 .then(function (response) {
-                    self.comment = response.data.comment;
+                    console.log("this inside comment axios: ", self);
+                    console.log("self from /comments: ", self.comments);
+
+                    self.comments = response.data;
                 })
                 .catch(function (err) {
                     console.log("error in GET /comments: ", err);
@@ -45,10 +50,31 @@
 
         methods: {
             setId: function () {
-                console.log("I want to set the id in component");
+                /* console.log("I want to set the id in component");
                 console.log("id when setting in component: ", id);
-                console.log("id when setting in component: ", this);
+                console.log("this in setId in component: ", this); */
                 this.$emit("setId");
+            },
+            submitComment: function (e) {
+                var self = this;
+                e.preventDefault();
+                console.log("I want to submit a comment");
+                console.log("this in submitComment in component: ", this);
+
+                axios
+                    .post("/comments", {
+                        comment: this.comment,
+                        username: this.username,
+                        image_id: this.id,
+                    })
+                    .then(function (response) {
+                        console.log("response from POST/upload", response);
+
+                        self.comments.unshift(response.data);
+                    })
+                    .catch(function (err) {
+                        console.log("err in POST/comments:", err);
+                    });
             },
         },
     });

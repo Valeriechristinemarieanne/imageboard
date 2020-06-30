@@ -42,17 +42,30 @@
 }
 
 .commentsection {
+    display: flex;
     flex-direction: column;
     text-align: center;
     background-color: #323e48;
 }
 
-.comment {
-    color: whitesmoke;
+input.comment {
+    align-self: center;
     color: #323e48;
+    background-color: whitesmoke;
+    height: 40px;
+    width: 15vw;
+}
+
+input.user {
+    width: 15vw;
+    color: #323e48;
+    background-color: whitesmoke;
+    align-self: center;
 }
 
 .submit {
+    width: 15vw;
+    align-self: center;
     background-color: tomato;
     color: white;
 }
