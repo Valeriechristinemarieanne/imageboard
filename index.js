@@ -91,7 +91,7 @@ app.get("/comments/:id", (req, res) => {
     getComments(req.params.id)
         .then((result) => {
             res.json(result.rows);
-            /* console.log("result.rows: ", result.rows); */
+            console.log("result.rows: ", result.rows);
         })
         .catch(function (err) {
             console.log("err in GET/comments:", err);

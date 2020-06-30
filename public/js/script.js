@@ -13,6 +13,8 @@
                 created_at: self.created_at,
                 comment: self.comment,
                 username: self.username,
+                created_at: self.created_at,
+                comments: [],
             };
         },
         mounted: function () {
@@ -38,8 +40,9 @@
             axios
                 .get(`/comments/${this.id}`)
                 .then(function (response) {
-                    console.log("this inside comment axios: ", self);
-                    console.log("self from /comments: ", self.comments);
+                    /* console.log("this inside comment axios: ", this);
+                    console.log("self from /comments: ", self.comment); */
+                    console.log("response from /comments for img: ", response);
 
                     self.comments = response.data;
                 })
@@ -68,13 +71,19 @@
                         image_id: this.id,
                     })
                     .then(function (response) {
-                        console.log("response from POST/upload", response);
-
+                        /* console.log(
+                            "response from POST/submitComment",
+                            response
+                        ); */
                         self.comments.unshift(response.data);
                     })
                     .catch(function (err) {
                         console.log("err in POST/comments:", err);
                     });
+            },
+            closeModal: function () {
+                console.log("about to emit from the component!!!!");
+                this.$emit("close");
             },
         },
     });
@@ -142,6 +151,13 @@
             setId: function (id) {
                 console.log("id when setting in vue instance: ", id);
                 this.id = id;
+            },
+            closeMe: function (e) {
+                console.log(
+                    "closeMe in the instance / parent is running! This was emitted from the component"
+                );
+                // this is where you want to update data to close the modal - set id to null
+                this.id = null;
             },
         },
     });

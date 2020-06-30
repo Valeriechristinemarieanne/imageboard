@@ -33,6 +33,6 @@ exports.addComments = (comment, username, image_id) => {
     );
 };
 
-exports.getComments = (id) => {
-    return db.query(`SELECT * FROM comments WHERE id = $1`, [id]);
+exports.getComments = (image_id) => {
+    return db.query(`SELECT * FROM comments WHERE image_id = $1`, [image_id]);
 };

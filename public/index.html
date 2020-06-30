@@ -14,7 +14,7 @@
 
 <h1>My Imageboard</h1>
 
-     <first-component id="component" v-if='id' :id="id"> </first-component>
+     <first-component id="component" v-if='id' :id="id"@close="closeMe"> </first-component>
 
  <div id="input">
     <form>
@@ -41,6 +41,7 @@
  <script id='template' type='text/x-template'>
       
         <div class='component'>
+
             
             <h3>{{title}}</h3> 
             <img :src="url" alt="images">
@@ -52,18 +53,17 @@
                     <input v-model="comment" type="text" name="comment" class="comment" placeholder="Comment">
                     <input v-model="username" type="text" name="username" class="user"     placeholder="Username">
                     <button @click="submitComment" class="submit">Submit</button>
-                    <p @click='closeModal' id="close"> X </p>
-
-                    <h6>{{comment}}</h6> 
-                    <p> {{username}}</p> 
-                    <p>{{created_at}}</p> 
+                
+                <div v-for="comment in comments">
+                    <p>{{comment.comment}} by {{comment.username}} </p> 
+                    <p>{{comment.created_at}}</p> 
                 </div>
-            
-            
-        
-        
+               
+
+                <p @click='closeModal' id="close"> X </p>
            
         </div>
+        
   
 </script>
 
