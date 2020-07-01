@@ -37,10 +37,10 @@ exports.getMoreImages = (lastId) =>
         .then(({ rows }) => rows);
 
 // COMMENTS TABLE
-exports.addComments = (comment, username, image_id) => {
+exports.addComments = (comment, c_username, image_id) => {
     return db.query(
-        `INSERT INTO comments (comment, username, image_id) VALUES ($1, $2, $3) RETURNING *`,
-        [comment, username, image_id]
+        `INSERT INTO comments (comment, c_username, image_id) VALUES ($1, $2, $3) RETURNING *`,
+        [comment, c_username, image_id]
     );
 };
 

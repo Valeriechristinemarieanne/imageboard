@@ -66,7 +66,7 @@
                 axios
                     .post("/comments", {
                         comment: this.comment,
-                        username: this.username,
+                        c_username: this.c_username,
                         image_id: this.id,
                     })
                     .then(function (response) {
@@ -148,15 +148,25 @@
             moreImages: function (e) {
                 console.log("running getMoreImages method in Vue instance");
                 var self = this;
+                console.log("this.images: ", this.images);
+
                 e.preventDefault();
+                var lastId = self.images[this.images.length - 1];
+                console.log("lastId.id", lastId.id);
+
+                lastId.id;
+                console.log(
+                    "self.images[this.images.length - 1]",
+                    self.images[this.images.length - 1]
+                );
                 axios
-                    .get(`/moreimages/${this.id}`)
+                    .get(`/moreimages/${lastId.id}`)
                     .then(function (response) {
                         console.log(
                             "response.data in getMoreimages axios: ",
                             response.data
                         );
-                        self.images = response.data;
+                        self.images = self.images.concat(response.data);
                     })
                     .catch(function (err) {
                         console.log("error in GET /moreimages: ", err);

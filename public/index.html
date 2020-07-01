@@ -43,7 +43,7 @@
  <script id='template' type='text/x-template'>
       
         <div class='component'>
-<p @click='closeModal' id="close"> X </p>
+<div@click='closeModal' id="close"> X </div>
 
             <h3>{{description}}</h3> 
             <img :src="url" alt="images">
@@ -52,7 +52,7 @@
                 
             <div class="commentsection">
                 <input v-model="comment" type="text" name="comment" class="comment" placeholder="Comment" >
-                <input v-model="username" type="text" name="username" class="user" placeholder="Username">
+                <input v-model="c_username" type="text" name="username" class="user" placeholder="Username">
                 <button @click="submitComment" id="submitbutton">Submit</button>
             </div>
 

@@ -92,8 +92,7 @@ app.get("/comments/:id", (req, res) => {
 app.post("/comments", (req, res) => {
     /* console.log("I want to add comments to the table");
     console.log("this is my req.body: ", req.body); */
-
-    addComments(req.body.comment, req.body.username, req.body.image_id)
+    addComments(req.body.comment, req.body.c_username, req.body.image_id)
         .then((result) => {
             res.json(result.rows[0]);
             /* console.log("result.rows: ", result.rows); */
@@ -109,7 +108,9 @@ app.get("/moreimages/:id", (req, res) => {
 
     getMoreImages(req.params.id)
         .then((result) => {
-            res.json(result.rows);
+            console.log("result: ", result);
+
+            res.json(result);
         })
         .catch(function (err) {
             console.log("err in get/moreimages:", err);
