@@ -6,6 +6,7 @@ const {
     getSelectedImage,
     getComments,
     addComments,
+    getMoreImages,
 } = require("./sql/db.js");
 const s3 = require("./s3");
 const { s3Url } = require("./config.json");
@@ -48,7 +49,7 @@ app.get("/images", (req, res) => {
         });
 });
 
-app.get("/imagesmore/:id", (req, res) => {
+app.get("/selectedimage/:id", (req, res) => {
     /* console.log("I am working", req.params.id); */
     getSelectedImage(req.params.id)
         .then((response) => {
@@ -61,14 +62,8 @@ app.get("/imagesmore/:id", (req, res) => {
 });
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-    // req.file is the file we've just uploaded
-    /* console.log("file: ", req.file); */
-    // req.body is the rest of the input fields
-    /* console.log("input: ", req.body); */
-
     const { filename } = req.file;
     const imageUrl = `${s3Url}${filename}`;
-    /* console.log("imageUrl: ", imageUrl); */
 
     if (req.file) {
         addImage(
@@ -77,8 +72,6 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             req.body.description,
             req.body.username
         ).then((response) => {
-            /* console.log("response: ", response.rows[0]); */
-
             res.json(response.rows[0]);
         });
     } else {
@@ -87,11 +80,9 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.get("/comments/:id", (req, res) => {
-    /* console.log("Here come all the comments for this image"); */
     getComments(req.params.id)
         .then((result) => {
             res.json(result.rows);
-            /*  console.log("result.rows: ", result.rows); */
         })
         .catch(function (err) {
             console.log("err in GET/comments:", err);
@@ -109,6 +100,19 @@ app.post("/comments", (req, res) => {
         })
         .catch(function (err) {
             console.log("err in POST/comments:", err);
+        });
+});
+
+app.get("/moreimages/:id", (req, res) => {
+    console.log("I want more than 6 images");
+    console.log("req.params.id: ", req.params.id);
+
+    getMoreImages(req.params.id)
+        .then((result) => {
+            res.json(result.rows);
+        })
+        .catch(function (err) {
+            console.log("err in get/moreimages:", err);
         });
 });
 

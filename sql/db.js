@@ -11,7 +11,7 @@ if (process.env.DATABASE_URL) {
 
 // IMAGES TABLE
 exports.getImages = () => {
-    return db.query(`SELECT * FROM images ORDER BY id DESC LIMIT 21`);
+    return db.query(`SELECT * FROM images ORDER BY id DESC LIMIT 6`);
 };
 
 exports.addImage = (url, username, title, description) => {
@@ -24,6 +24,17 @@ exports.addImage = (url, username, title, description) => {
 exports.getSelectedImage = (id) => {
     return db.query(`SELECT * FROM images WHERE id = $1`, [id]);
 };
+
+exports.getMoreImages = (lastId) =>
+    db
+        .query(
+            `SELECT * FROM images
+        WHERE id < $1
+        ORDER BY id DESC
+        LIMIT 6`,
+            [lastId]
+        )
+        .then(({ rows }) => rows);
 
 // COMMENTS TABLE
 exports.addComments = (comment, username, image_id) => {

@@ -12,8 +12,7 @@
                 username: self.username,
                 created_at: self.created_at,
                 comment: self.comment,
-                username: self.username,
-                created_at: self.created_at,
+                c_username: self.username,
                 comments: [],
             };
         },
@@ -22,7 +21,7 @@
             /* console.log(this.id); */
 
             axios
-                .get(`/imagesmore/${this.id}`)
+                .get(`/selectedimage/${this.id}`)
                 .then(function (response) {
                     /* console.log("this inside axios: ", this);
                     console.log("response from /images: ", response.data.title); */
@@ -42,7 +41,7 @@
                 .then(function (response) {
                     /* console.log("this inside comment axios: ", this);
                     console.log("self from /comments: ", self.comment); */
-                    console.log("response from /comments for img: ", response);
+                    /*  console.log("response from /comments for img: ", response); */
 
                     self.comments = response.data;
                 })
@@ -61,8 +60,8 @@
             submitComment: function (e) {
                 var self = this;
                 e.preventDefault();
-                console.log("I want to submit a comment");
-                console.log("this in submitComment in component: ", this);
+                /* console.log("I want to submit a comment");
+                console.log("this in submitComment in component: ", this); */
 
                 axios
                     .post("/comments", {
@@ -82,7 +81,7 @@
                     });
             },
             closeModal: function () {
-                console.log("about to emit from the component!!!!");
+                /*  console.log("about to emit from the component!!!!"); */
                 this.$emit("close");
             },
         },
@@ -99,29 +98,22 @@
             file: null,
             id: null,
         },
-
         mounted: function () {
             /* console.log("My Vue has mounted"); */
-            /* console.log("this outside axios: ", this); */
             var self = this;
             axios
                 .get("/images")
                 .then(function (response) {
-                    /* console.log("this inside axios: ", this);
-                    console.log("response from /images: ", response); */
                     self.images = response.data;
                 })
                 .catch(function (err) {
                     console.log("error in GET /images: ", err);
                 });
         },
-
         methods: {
             handleClick: function (e) {
                 var self = this;
                 e.preventDefault();
-                /* console.log("this: ", this); */
-
                 // we are only using formdata because we are working with a file!!!
                 var formData = new FormData();
                 formData.append("title", this.title);
@@ -132,7 +124,7 @@
                 axios
                     .post("/upload", formData)
                     .then(function (response) {
-                        console.log("response from POST/upload", response);
+                        /* console.log("response from POST/upload", response); */
 
                         self.images.unshift(response.data);
                     })
@@ -140,24 +132,35 @@
                         console.log("err in POST/upload:", err);
                     });
             },
-
             handleChange: function (e) {
-                console.log("handleChange is running ");
-                console.log("file: ", e.target.files[0]);
+                /* console.log("handleChange is running ");
+                console.log("file: ", e.target.files[0]); */
                 this.file = e.target.files[0];
-                console.log(("this after adding file to data: ", this));
+                /* console.log(("this after adding file to data: ", this)); */
             },
-
             setId: function (id) {
-                console.log("id when setting in vue instance: ", id);
                 this.id = id;
             },
             closeMe: function (e) {
-                console.log(
-                    "closeMe in the instance / parent is running! This was emitted from the component"
-                );
-                // this is where you want to update data to close the modal - set id to null
+                // update data to close the modal - set id to null
                 this.id = null;
+            },
+            moreImages: function (e) {
+                console.log("running getMoreImages method in Vue instance");
+                var self = this;
+                e.preventDefault();
+                axios
+                    .get(`/moreimages/${this.id}`)
+                    .then(function (response) {
+                        console.log(
+                            "response.data in getMoreimages axios: ",
+                            response.data
+                        );
+                        self.images = response.data;
+                    })
+                    .catch(function (err) {
+                        console.log("error in GET /moreimages: ", err);
+                    });
             },
         },
     });

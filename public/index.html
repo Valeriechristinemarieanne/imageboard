@@ -6,11 +6,9 @@
 </head>
 <body>
 
- 
-
 <div id="main">
 
-<div class="overlay"></div>
+<div v-if="id" class="overlay"></div>
 
 <h1>R O A D T R I P</h1>
 <h4>|| travelling the deep south ||</h4>
@@ -39,7 +37,7 @@
         
     </div>
  </div>
-   
+   <button @click="moreImages" id="more-btn">more</button>  
 </div>
 
  <script id='template' type='text/x-template'>
@@ -64,17 +62,18 @@
                  <br>{{comment.created_at}}
                 </p> 
             </div>
-               
-            
-           
+                 
         </div>
-        
+    
+         
   
 </script>
 
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js"></script>
+
+ 
 
 </body>
 </html>
