@@ -146,26 +146,21 @@
                 this.id = null;
             },
             moreImages: function (e) {
-                console.log("running getMoreImages method in Vue instance");
+                /* console.log("this.images: ", this.images);
+                console.log("running getMoreImages method in Vue instance"); */
                 var self = this;
-                console.log("this.images: ", this.images);
-
                 e.preventDefault();
-                var lastId = self.images[this.images.length - 1];
-                console.log("lastId.id", lastId.id);
 
+                var lastId = self.images[self.images.length - 1];
+                /* console.log("lastId.id", lastId.id); */
                 lastId.id;
-                console.log(
+                /* console.log(
                     "self.images[this.images.length - 1]",
                     self.images[this.images.length - 1]
-                );
+                ); */
                 axios
                     .get(`/moreimages/${lastId.id}`)
                     .then(function (response) {
-                        console.log(
-                            "response.data in getMoreimages axios: ",
-                            response.data
-                        );
                         self.images = self.images.concat(response.data);
                         for (var i = 0; i < response.data.length; i++) {
                             if (

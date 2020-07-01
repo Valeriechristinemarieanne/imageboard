@@ -10,7 +10,6 @@ h1 {
 }
 
 #main h4 {
-    margin: 5px;
     width: 30vw;
     text-align: center;
     align-self: center;
@@ -114,16 +113,58 @@ img {
     align-self: center;
     text-align: center;
     z-index: 3;
-    top: 2vw;
+    top: 6vw;
     height: 80vh;
-    width: 45vw;
+    width: 750px;
     background-color: whitesmoke;
-    border: hotpink 1px solid;
+
+    display: flex;
+    flex-direction: row;
 }
 
 .component p {
-    font-size: x-small;
-    border: teal 1px solid;
+    font-size: small;
+}
+
+.selectedimage {
+    margin-top: 3%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.selectedimage img {
+    height: 70%;
+    width: auto;
+}
+
+.imagetext {
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.imagetext h4 {
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    margin-left: 5px !important;
+}
+
+.imagetext p {
+    margin-bottom: 0 !important;
+    margin-left: 5px !important;
+}
+
+.commentcontainer {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .commentsection {
@@ -131,10 +172,10 @@ img {
     flex-direction: column;
     text-align: center;
     justify-content: space-between;
-    width: 45vw;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border: darkcyan 1px solid;
+    height: 20%;
+    padding-top: 20%;
+    padding-bottom: 5%;
+    padding-right: 20%;
 }
 
 input.comment {
@@ -142,33 +183,40 @@ input.comment {
     color: black;
     background-color: whitesmoke;
     height: 20px;
-    width: 15vw;
     border: black 1px solid;
     margin-bottom: 12px;
     padding-left: 5px;
-    border: purple 1px solid;
 }
 
 input.user {
-    width: 15vw;
     color: #323e48;
     background-color: whitesmoke;
     align-self: center;
-    border-width: 15vw;
     margin-bottom: 12px;
     border-bottom: #323e48 2px solid;
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border: orange 1px solid;
 }
 
 #submitbutton {
-    width: 10vw;
-    height: 2vw;
     border: #323e48 1px solid;
     cursor: pointer;
     align-self: center;
+}
+
+.allmycomments {
+    height: 80%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.comments p {
+    font-size: small;
+    margin: 0;
+    padding: 5px;
 }
 
 #close {
@@ -176,25 +224,11 @@ input.user {
     padding-right: 15px;
     padding-top: 5px;
     width: 30px;
+    height: 30px;
     cursor: pointer;
     font-size: large;
     margin-top: 5px;
     margin-right: 5px;
-    background: red;
-}
-
-.allmycomments {
-    height: 100px;
-    overflow-y: scroll;
-    border: blue 1px solid;
-}
-
-.comments p {
-    /* color: black; */
-    font-size: small;
-    margin: 0;
-    padding: 5px;
-    border: green 1px solid;
 }
 
 .overlay {
@@ -210,6 +244,11 @@ input.user {
     z-index: 2;
 }
 
+#more-btn {
+    width: 50px;
+    align-self: center;
+    cursor: pointer;
+}
 .hide {
     display: none;
 }

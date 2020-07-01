@@ -11,15 +11,16 @@
 <div v-if="id" class="overlay"></div>
 
 <h1>R O A D T R I P</h1>
-<h4>|| travelling the deep south ||</h4>
+<!-- <h4>||   travelling the deep south   ||</h4> -->
 
      <first-component id="component" v-if='id' :id="id"@close="closeMe"> </first-component>
 
  <div id="upload">
+     
     <form>
-        <input v-model="username" type="text" name="username" placeholder="Title" required>
-        <input v-model="title" type="text" name="title" placeholder="Description" required>
-        <input v-model="description" type="text" name="description" placeholder="Username" required>
+        <input v-model="username" type="text" name="username" placeholder="Title" required autocomplete="off">
+        <input v-model="title" type="text" name="title" placeholder="Description" required autocomplete="off">
+        <input v-model="description" type="text" name="description" placeholder="Username" required autocomplete="off">
         
         
         <input @change="handleChange" type="file" id="file" name="file" accept="image/*" class="inputfile"/>
@@ -33,7 +34,7 @@
  <div id="cardcontainer">
     <div v-for="image in images" class="card">
         <img @click="setId(image.id);" :src="image.url" alt="images">
-        <h6>{{image.description}}</h6>
+        <p>{{image.description}}</p>
         
     </div>
  </div>
@@ -43,27 +44,35 @@
  <script id='template' type='text/x-template'>
       
         <div class='component'>
-<div@click='closeModal' id="close"> X </div>
+            <div@click='closeModal' id="close"> X </div>
 
-            <h3>{{description}}</h3> 
-            <img :src="url" alt="images">
-            <h6>{{title}} </h6> 
-            <p>Image by {{username}} on {{created_at}}</p> 
-                
-            <div class="commentsection">
-                <input v-model="comment" type="text" name="comment" class="comment" placeholder="Comment" >
-                <input v-model="c_username" type="text" name="username" class="user" placeholder="Username">
-                <button @click="submitComment" id="submitbutton">Submit</button>
-            </div>
-
-            <div class="allmycomments">
-                <div class="comments" v-for="comment in comments">
-                    <p>{{comment.comment}} 
-                    <br>by {{comment.username}} 
-                    <br> on {{comment.created_at}}
-                    </p> 
+           <div class="selectedimage"> 
+                <img :src="url" alt="images">
+                <div class="imagetext">
+                    <h4>{{description}}</h4> 
+                    <p> <strong>{{title}}</strong> </p> 
+                    <p>Image by {{username}} on {{created_at}}</p> 
                 </div>
-            </div>    
+           </div>     
+            
+           <div class="commentcontainer">
+
+                <div class="allmycomments">
+                    <div class="comments" v-for="comment in comments">
+                        <p>{{comment.comment}} 
+                        <br>by {{comment.c_username}} 
+                        <br> on {{comment.created_at}}
+                        </p> 
+                    </div>
+                </div>
+
+                <div class="commentsection">
+                    <input v-model="comment" type="text" name="comment" class="comment" placeholder="Comment" autocomplete="off" >
+                    <input v-model="c_username" type="text" name="username" class="user" placeholder="Username" autocomplete="off">
+                    <button @click="submitComment" id="submitbutton">Submit</button>
+                </div>
+
+        </div>
         </div>
     
          

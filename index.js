@@ -108,8 +108,7 @@ app.get("/moreimages/:id", (req, res) => {
 
     getMoreImages(req.params.id)
         .then((result) => {
-            console.log("result: ", result);
-
+            /* console.log("result: ", result); */
             res.json(result);
         })
         .catch(function (err) {

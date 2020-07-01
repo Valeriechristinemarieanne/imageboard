@@ -16,7 +16,7 @@ exports.getImages = () => {
 
 exports.addImage = (url, username, title, description) => {
     return db.query(
-        `INSERT INTO images (url, username, title, description) VALUES ($1, $3, $2, $4) RETURNING *`,
+        `INSERT INTO images (url, username, title, description) VALUES ($1, $3, $2, $4) RETURNING *, TO_CHAR(created_at, 'DD. Month YYYY at HH:MI') AS created_at`,
         [url, username, title, description]
     );
 };
@@ -41,7 +41,7 @@ exports.getMoreImages = (lastId) =>
 // COMMENTS TABLE
 exports.addComments = (comment, c_username, image_id) => {
     return db.query(
-        `INSERT INTO comments (comment, c_username, image_id) VALUES ($1, $2, $3) RETURNING *`,
+        `INSERT INTO comments (comment, c_username, image_id) VALUES ($1, $2, $3) RETURNING *, TO_CHAR(created_at, 'DD. Month YYYY at HH:MI') AS created_at`,
         [comment, c_username, image_id]
     );
 };
