@@ -167,6 +167,16 @@
                             response.data
                         );
                         self.images = self.images.concat(response.data);
+                        for (var i = 0; i < response.data.length; i++) {
+                            if (
+                                response.data[i].id == response.data[i].lowestId
+                            ) {
+                                var button = document.getElementById(
+                                    "more-btn"
+                                );
+                                button.classList.add("hide");
+                            }
+                        }
                     })
                     .catch(function (err) {
                         console.log("error in GET /moreimages: ", err);

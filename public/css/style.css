@@ -118,10 +118,12 @@ img {
     height: 80vh;
     width: 45vw;
     background-color: whitesmoke;
+    border: hotpink 1px solid;
 }
 
 .component p {
     font-size: x-small;
+    border: teal 1px solid;
 }
 
 .commentsection {
@@ -132,6 +134,7 @@ img {
     width: 45vw;
     padding-top: 20px;
     padding-bottom: 20px;
+    border: darkcyan 1px solid;
 }
 
 input.comment {
@@ -143,6 +146,7 @@ input.comment {
     border: black 1px solid;
     margin-bottom: 12px;
     padding-left: 5px;
+    border: purple 1px solid;
 }
 
 input.user {
@@ -156,6 +160,7 @@ input.user {
     border-top: 0;
     border-left: 0;
     border-right: 0;
+    border: orange 1px solid;
 }
 
 #submitbutton {
@@ -178,16 +183,18 @@ input.user {
     background: red;
 }
 
-.comments {
-    height: 50px;
-    overflow: scroll;
+.allmycomments {
+    height: 100px;
+    overflow-y: scroll;
+    border: blue 1px solid;
 }
 
 .comments p {
-    color: whitesmoke;
+    /* color: black; */
     font-size: small;
     margin: 0;
     padding: 5px;
+    border: green 1px solid;
 }
 
 .overlay {
@@ -201,4 +208,8 @@ input.user {
     height: 100%;
     background-color: rgb(0, 0, 0, 0.7);
     z-index: 2;
+}
+
+.hide {
+    display: none;
 }

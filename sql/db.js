@@ -28,7 +28,9 @@ exports.getSelectedImage = (id) => {
 exports.getMoreImages = (lastId) =>
     db
         .query(
-            `SELECT * FROM images
+            `SELECT *, (SELECT id FROM images
+    ORDER BY id ASC
+    LIMIT 1) AS "lowestId" FROM images
         WHERE id < $1
         ORDER BY id DESC
         LIMIT 6`,

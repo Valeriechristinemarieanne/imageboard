@@ -56,13 +56,14 @@
                 <button @click="submitComment" id="submitbutton">Submit</button>
             </div>
 
-            <div class="comments" v-for="comment in comments">
-                <p>{{comment.comment}} 
-                 <br>by {{comment.username}} 
-                 <br>{{comment.created_at}}
-                </p> 
-            </div>
-                 
+            <div class="allmycomments">
+                <div class="comments" v-for="comment in comments">
+                    <p>{{comment.comment}} 
+                    <br>by {{comment.username}} 
+                    <br> on {{comment.created_at}}
+                    </p> 
+                </div>
+            </div>    
         </div>
     
          
