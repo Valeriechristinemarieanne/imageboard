@@ -103,8 +103,8 @@ app.post("/comments", (req, res) => {
 });
 
 app.get("/moreimages/:id", (req, res) => {
-    console.log("I want more than 6 images");
-    console.log("req.params.id: ", req.params.id);
+    /*    console.log("I want more than 6 images");
+    console.log("req.params.id: ", req.params.id); */
 
     getMoreImages(req.params.id)
         .then((result) => {

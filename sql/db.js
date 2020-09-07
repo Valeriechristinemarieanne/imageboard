@@ -16,7 +16,7 @@ exports.getImages = () => {
 
 exports.addImage = (url, username, title, description) => {
     return db.query(
-        `INSERT INTO images (url, username, title, description) VALUES ($1, $3, $2, $4) RETURNING *, TO_CHAR(created_at, 'DD. Month YYYY at HH:MI') AS created_at`,
+        `INSERT INTO images (url, username, title, description) VALUES ($1, $3, $2, $4) RETURNING *, TO_CHAR (created_at, 'DD. Month YYYY at HH:MI') AS created_at`,
         [url, username, title, description]
     );
 };
